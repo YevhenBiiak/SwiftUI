@@ -9,22 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var buttonTitle = "START"
-    @State var model = TrafficLightModel()
+    @State private var buttonTitle = "START"
+    @State private var trafficLight = TrafficLight()
     
     var body: some View {
         
         ZStack {
-            Color(.black)
-                .ignoresSafeArea()
+            Color(.black).ignoresSafeArea()
+            
             VStack {
-                FilledCircle(fillColor: model.red)
-                FilledCircle(fillColor: model.orange)
-                FilledCircle(fillColor: model.green)
+                FilledCircle(fillColor: .red,    opacity: trafficLight.current == .red    ? 1 : 0.2)
+                FilledCircle(fillColor: .yellow, opacity: trafficLight.current == .yellow ? 1 : 0.2)
+                FilledCircle(fillColor: .green,  opacity: trafficLight.current == .green  ? 1 : 0.2)
                 Spacer()
                 FilledButton(fillColor: .green, title: buttonTitle) {
                     buttonTitle = "NEXT"
-                    model.next()
+                    trafficLight.nextColor()
                 }
             }
             .padding(EdgeInsets(

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct FilledCircle: View {
     
-    var fillColor: Color
+    let fillColor: Color
+    let opacity: Double
     
     var body: some View {
         Circle()
@@ -19,11 +20,12 @@ struct FilledCircle: View {
             .overlay {
                 Circle().stroke(.white, lineWidth: 4)
             }
+            .opacity(opacity)
     }
 }
 
 struct FilledCircle_Previews: PreviewProvider {
     static var previews: some View {
-        FilledCircle(fillColor: .red)
+        FilledCircle(fillColor: .red, opacity: 1)
     }
 }

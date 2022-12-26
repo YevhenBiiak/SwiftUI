@@ -9,18 +9,18 @@ import SwiftUI
 
 struct FilledButton: View {
     
-    var fillColor: Color
-    var title: String
-    var completion: (() -> Void)? = nil
+    let fillColor: Color
+    let title: String
+    let action: () -> Void
     
     var body: some View {
-        Button() {
-            completion?()
-        } label: {
+        Button(action: action) {
             Text(title)
                 .font(.title)
+                .fontWeight(.bold)
                 .frame(width: 200, height: 50)
                 .background { fillColor }
+                .foregroundColor(.white)
                 .cornerRadius(15)
                 .shadow(color: .white, radius: 8)
                 .overlay {
@@ -33,6 +33,6 @@ struct FilledButton: View {
 
 struct FilledRectangle_Previews: PreviewProvider {
     static var previews: some View {
-        FilledButton(fillColor: .green, title: "Next")
+        FilledButton(fillColor: .green, title: "Next", action: {})
     }
 }

@@ -13,7 +13,7 @@
 		57914D3D2959A9F200E03980 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57914D3C2959A9F200E03980 /* Preview Assets.xcassets */; };
 		57914D442959B93B00E03980 /* FilledCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57914D432959B93B00E03980 /* FilledCircle.swift */; };
 		57914D462959BDA200E03980 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57914D452959BDA200E03980 /* FilledButton.swift */; };
-		57914D482959C8AD00E03980 /* TrafficLightModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57914D472959C8AC00E03980 /* TrafficLightModel.swift */; };
+		57914D482959C8AD00E03980 /* TrafficLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57914D472959C8AC00E03980 /* TrafficLight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +24,7 @@
 		57914D3C2959A9F200E03980 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		57914D432959B93B00E03980 /* FilledCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledCircle.swift; sourceTree = "<group>"; };
 		57914D452959BDA200E03980 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
-		57914D472959C8AC00E03980 /* TrafficLightModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficLightModel.swift; sourceTree = "<group>"; };
+		57914D472959C8AC00E03980 /* TrafficLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrafficLight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +38,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		577131EB295A092B003EA01C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				57914D472959C8AC00E03980 /* TrafficLight.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		577131EC295A0935003EA01C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				57914D372959A9F000E03980 /* ContentView.swift */,
+				57914D432959B93B00E03980 /* FilledCircle.swift */,
+				57914D452959BDA200E03980 /* FilledButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		57914D292959A9F000E03980 = {
 			isa = PBXGroup;
 			children = (
@@ -58,10 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				57914D352959A9F000E03980 /* TrafficLightApp.swift */,
-				57914D472959C8AC00E03980 /* TrafficLightModel.swift */,
-				57914D372959A9F000E03980 /* ContentView.swift */,
-				57914D432959B93B00E03980 /* FilledCircle.swift */,
-				57914D452959BDA200E03980 /* FilledButton.swift */,
+				577131EB295A092B003EA01C /* Models */,
+				577131EC295A0935003EA01C /* Views */,
 				57914D392959A9F200E03980 /* Assets.xcassets */,
 				57914D3B2959A9F200E03980 /* Preview Content */,
 			);
@@ -147,7 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				57914D382959A9F000E03980 /* ContentView.swift in Sources */,
-				57914D482959C8AD00E03980 /* TrafficLightModel.swift in Sources */,
+				57914D482959C8AD00E03980 /* TrafficLight.swift in Sources */,
 				57914D462959BDA200E03980 /* FilledButton.swift in Sources */,
 				57914D362959A9F000E03980 /* TrafficLightApp.swift in Sources */,
 				57914D442959B93B00E03980 /* FilledCircle.swift in Sources */,
