@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var red:   Double = Double.random(in: 0...255)
-    @State private var green: Double = Double.random(in: 0...255)
-    @State private var blue:  Double = Double.random(in: 0...255)
+    @State private var red:   Double = Double.random(in: 0...255).rounded()
+    @State private var green: Double = Double.random(in: 0...255).rounded()
+    @State private var blue:  Double = Double.random(in: 0...255).rounded()
         
     var body: some View {
         ZStack {
