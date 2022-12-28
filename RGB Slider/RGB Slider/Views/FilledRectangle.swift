@@ -9,21 +9,23 @@ import SwiftUI
 
 struct FilledRectangle: View {
     
-    let color: Color
+    let red: Double
+    let green: Double
+    let blue: Double
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 15)
+        Color(red: red/255, green: green/255, blue: blue/255)
             .frame(height: 200)
-            .foregroundColor(color)
+            .cornerRadius(15)
             .overlay {
                 RoundedRectangle(cornerRadius: 15).stroke(Color(.white), lineWidth: 4)
             }
-            .padding(16)
+            .padding()
     }
 }
 
 struct FilledRectangle_Previews: PreviewProvider {
     static var previews: some View {
-        FilledRectangle(color: .blue)
+        FilledRectangle(red: 12, green: 34, blue: 244)
     }
 }

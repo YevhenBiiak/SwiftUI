@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5765F816295B5EE400727044 /* UIApplication + .swift in Sources */ = {isa = PBXBuildFile; fileRef = 5765F815295B5EE400727044 /* UIApplication + .swift */; };
 		577131FA295AD8D3003EA01C /* RGB_SliderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577131F9295AD8D3003EA01C /* RGB_SliderApp.swift */; };
 		577131FC295AD8D3003EA01C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577131FB295AD8D3003EA01C /* ContentView.swift */; };
 		577131FE295AD8D5003EA01C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 577131FD295AD8D5003EA01C /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5765F815295B5EE400727044 /* UIApplication + .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + .swift"; sourceTree = "<group>"; };
 		577131F6295AD8D3003EA01C /* RGB Slider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RGB Slider.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		577131F9295AD8D3003EA01C /* RGB_SliderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGB_SliderApp.swift; sourceTree = "<group>"; };
 		577131FB295AD8D3003EA01C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +38,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5765F817295B5EEA00727044 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5765F815295B5EE400727044 /* UIApplication + .swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		577131ED295AD8D3003EA01C = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +67,7 @@
 			children = (
 				577131F9295AD8D3003EA01C /* RGB_SliderApp.swift */,
 				57713209295AE232003EA01C /* Views */,
+				5765F817295B5EEA00727044 /* Extensions */,
 				577131FD295AD8D5003EA01C /* Assets.xcassets */,
 				577131FF295AD8D5003EA01C /* Preview Content */,
 			);
@@ -153,6 +164,7 @@
 			files = (
 				5771320B295AE256003EA01C /* FilledRectangle.swift in Sources */,
 				577131FC295AD8D3003EA01C /* ContentView.swift in Sources */,
+				5765F816295B5EE400727044 /* UIApplication + .swift in Sources */,
 				57F3CD47295B136900ECC6F2 /* ColorSlider.swift in Sources */,
 				577131FA295AD8D3003EA01C /* RGB_SliderApp.swift in Sources */,
 			);

@@ -9,22 +9,25 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var red:   Double = Double.random(in: 0...255).rounded()
-    @State private var green: Double = Double.random(in: 0...255).rounded()
-    @State private var blue:  Double = Double.random(in: 0...255).rounded()
+    @State private var redValue:   Double = Double.random(in: 0...255).rounded()
+    @State private var greenValue: Double = Double.random(in: 0...255).rounded()
+    @State private var blueValue:  Double = Double.random(in: 0...255).rounded()
+
+   @State var hex = ""
         
     var body: some View {
         ZStack {
             Color({#colorLiteral(red: 0.4620226622, green: 0.8382837176, blue: 1, alpha: 1)}()).ignoresSafeArea()
             
             VStack {
-                FilledRectangle(color: Color(red: red/255, green: green/255, blue: blue/255))
-                ColorSlider(tintColor: .red,   value: $red)
-                ColorSlider(tintColor: .green, value: $green)
-                ColorSlider(tintColor: .blue,  value: $blue)
+                FilledRectangle(red: redValue, green: greenValue, blue: blueValue)
+                ColorSlider(tintColor: .red,   value: $redValue)
+                ColorSlider(tintColor: .green, value: $greenValue)
+                ColorSlider(tintColor: .blue,  value: $blueValue)
                 Spacer()
             }
         }
+        .onTapGesture(perform: UIApplication.shared.hideKeyboard)
     }
 }
 

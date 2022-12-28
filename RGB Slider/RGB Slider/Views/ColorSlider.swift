@@ -10,9 +10,9 @@ import SwiftUI
 struct ColorSlider: View {
     
     let tintColor: Color
-    
     @Binding var value: Double
     
+    @State private var text = ""
     @State private var isAlertPresented = false
     
     var body: some View {
@@ -21,11 +21,15 @@ struct ColorSlider: View {
             
             Slider(value: $value, in: 0...255, step: 1).tint(tintColor)
             
-            TextField("\(lround(value))", value: $value, format: .number)
+            TextField("", text: $text)
                 .frame(width: 50)
                 .textFieldStyle(.roundedBorder)
                 .multilineTextAlignment(.center)
+                .onAppear { text = "\(lround(value))" }
                 .onSubmit(validate)
+                .onChange(of: value, perform: { _ in
+                    text = "\(lround(value))"
+                })
                 .alert(isPresented: $isAlertPresented) {
                     Alert(title: Text("Wrong format!"),
                           message: Text("Please enter value from 0 to 255"))
@@ -33,27 +37,23 @@ struct ColorSlider: View {
         }
         .padding()
     }
+}
+
+extension ColorSlider {
     
     private func validate() {
-        if !(0...255).contains(value) {
-            value = value < 128 ? 0 : 255
+        if let newValue = Double(text), (0...255).contains(newValue) {
+            self.value = newValue
+        } else {
+            self.text = "\(lround(value))"
             isAlertPresented.toggle()
         }
     }
 }
 
 struct ColorSlider_Previews: PreviewProvider {
-    
-    struct Preview: View {
-        
-        @State var value: Double = 255
-        
-        var body: some View {
-            ColorSlider(tintColor: .blue, value: $value)
-        }
-    }
         
     static var previews: some View {
-        Preview()
+        ColorSlider(tintColor: .blue, value: .constant(50))
     }
 }
