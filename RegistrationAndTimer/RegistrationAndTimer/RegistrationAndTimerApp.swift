@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct RegistrationAndTimerApp: App {
+    
+    let userManager = UserManager()
+    
     var body: some Scene {
         WindowGroup {
             StartingView()
+                .environmentObject(userManager)
         }
     }
 }

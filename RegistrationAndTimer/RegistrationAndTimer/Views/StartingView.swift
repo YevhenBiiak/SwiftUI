@@ -9,14 +9,14 @@ import SwiftUI
 
 struct StartingView: View {
     
-    @StateObject private var userManager = UserManager()
+    @EnvironmentObject var userManager: UserManager
     
     var body: some View {
         Group {
             if userManager.isUserRegistered {
-                TimerView().environmentObject(userManager)
+                TimerView()
             } else {
-                RegisterView().environmentObject(userManager)
+                RegisterView()
             }
         }
     }

@@ -15,7 +15,7 @@ struct TimerView: View {
     var body: some View {
         VStack {
             Spacer()
-//            Text("HI, \(userManager.userName.uppercased())")
+            Text("HI, \(userManager.userName.uppercased())")
             Text("\(timer.counter)")
                 .font(.title)
                 .padding(EdgeInsets(top: 70, leading: 0, bottom: 70, trailing: 0))

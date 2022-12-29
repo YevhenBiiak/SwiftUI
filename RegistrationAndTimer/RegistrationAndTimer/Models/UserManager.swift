@@ -9,8 +9,28 @@ import Foundation
 
 class UserManager: ObservableObject {
     
-    @Published var isUserRegistered = false
+    private struct Keys {
+        static let isUserRegistered = "isUserRegistered"
+        static let userName = "userName"
+    }
     
-    var userName = String()
+    @Published var isUserRegistered: Bool {
+        didSet { save() }
+    }
+    @Published var userName: String
     
+    var isNameValid: Bool {
+        userName.count >= 3
+    }
+    
+    init() {
+        isUserRegistered = UserDefaults.standard.bool(forKey: Keys.isUserRegistered)
+        userName = UserDefaults.standard.string(forKey: Keys.userName) ?? ""
+    }
+    
+    private func save() {
+        UserDefaults.standard.set(isUserRegistered, forKey: Keys.isUserRegistered)
+        isUserRegistered ? UserDefaults.standard.set(userName, forKey: Keys.userName)
+                         : UserDefaults.standard.removeObject(forKey: Keys.userName)
+    }
 }

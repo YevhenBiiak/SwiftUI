@@ -10,17 +10,16 @@ import SwiftUI
 struct RegisterView: View {
     
     @EnvironmentObject var userManager: UserManager
-    @State private var name: String = ""
     
     var body: some View {
         VStack {
-            TextField("Type your name", text: $name)
+            TextField("Type your name", text: $userManager.userName)
                 .font(.title2)
                 .textFieldStyle(.roundedBorder)
                 .multilineTextAlignment(.center)
                 .onSubmit(register)
             
-            ProgressView(value: lettersCount, total: 3)
+            ProgressView(value: progress, total: 3)
                 .offset(x: 0, y: -8)
                 .tint(.green)
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 80, trailing: 0))
@@ -33,21 +32,20 @@ struct RegisterView: View {
                     .cornerRadius(15)
                     .font(.title2)
             }
-            .disabled(lettersCount < 3)
+            .disabled(!userManager.isNameValid)
         }
         .padding()
     }
     
-    private var lettersCount: Double {
-        name.count < 3 ? Double(name.count) : 3.0
+    private var progress: Double {
+        min(Double(userManager.userName.count), 3)
     }
     
     private var buttonBGColor: Color {
-        lettersCount >= 3 ? Color.green : Color(.systemGray5)
+        userManager.isNameValid ? Color(.systemGreen) : Color(.systemGray5)
     }
     
     private func register() {
-        userManager.userName = name
         userManager.isUserRegistered = true
     }
 }
