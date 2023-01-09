@@ -9,6 +9,10 @@ import Foundation
 
 extension Date {
     
+    static var midnight: Date {
+        Date.now.with(hour: 0)
+    }
+    
     var year: Int {
         Calendar.current.component(.year, from: self)
     }

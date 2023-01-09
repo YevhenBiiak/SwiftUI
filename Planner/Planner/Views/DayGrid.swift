@@ -40,9 +40,9 @@ struct DayGrid: View {
                     }
                 }
             }
+            .padding(.vertical)
         }
         .navigationTitle(title)
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var title: String {

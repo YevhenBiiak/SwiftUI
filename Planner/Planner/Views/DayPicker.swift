@@ -10,18 +10,18 @@ import SwiftUI
 struct DayPicker<Content, Label>: View where Content: View, Label: View {
     
     @Binding var selectedDate: Date
-    let label: (Int) -> Label
+    let label: (Date) -> Label
     let content: (Date) -> Content
     
     @State private var page: Int = 1
-    @State private var nextDate: Date = Date()
+    @State private var nextDate: Date = Date.midnight
     
     private let columns = Array(repeating: GridItem(.flexible()), count: 7)
     
     var body: some View {
         TabView(selection: $page) {
             ForEach(0..<3) { p in
-                GeometryReader { _ in
+                GeometryReader { geometry in
                     VStack {
                         LazyVGrid(columns: columns) {
                             ForEach(weekdays, id: \.self) { weekday in
@@ -32,14 +32,17 @@ struct DayPicker<Content, Label>: View where Content: View, Label: View {
                             ForEach(days(inMonth: months[p]), id: \.self) { day in
                                 VStack {
                                     if day > 0 {
-                                        Button(action: {} ) {
-                                            label(day)
+                                        Button {
+                                            selectedDate = months[p].with(day: day)
+                                        } label: {
+                                            label(months[p].with(day: day))
                                         }
                                     }
                                 }
+                                .frame(height: geometry.size.width / 9)
                             }
-                            .frame(height: 40)
                         }
+                        .padding(.horizontal)
                         content(months[p])
                     }
                     .onDisappear {

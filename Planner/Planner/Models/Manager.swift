@@ -25,5 +25,6 @@ class Manager<Model: Codable & Equatable>: ObservableObject {
     
     func remove(_ model: Model) {
         data.removeAll { $0 == model }
+        try! storage.save(data)
     }
 }

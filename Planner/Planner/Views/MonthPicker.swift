@@ -16,25 +16,28 @@ struct MonthPicker: View {
     var body: some View {
         LazyVGrid(columns: columns) {
             ForEach(months, id: \.self) { month in
-                if selection == month {
-                    Button(month.formatted("MMMM").capitalized) {
+                Button {
+                    if selection == month {
+                        selection = Date.midnight
+                    } else {
                         selection = month
                     }
-                    .font(.title2.bold())
-                    .frame(width: 120)
-                    .padding(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
-                    .foregroundColor(.white)
-                    .background {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.accentColor)
+                } label: {
+                    if selection == month {
+                        Text(month.formatted("MMMM").capitalized)
+                            .font(.title2.bold())
+                            .frame(width: 120)
+                            .padding(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
+                            .foregroundColor(.white)
+                            .background {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color.accentColor)
+                            }
+                    } else {
+                        Text(month.formatted("MMMM"))
+                            .foregroundColor(.primary)
                     }
-                } else {
-                    Button(month.formatted("MMMM").capitalized) {
-                        selection = month
-                    }
-                    .foregroundColor(.primary)
                 }
-                    
             }
         }
     }

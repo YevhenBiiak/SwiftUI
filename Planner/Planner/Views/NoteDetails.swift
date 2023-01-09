@@ -14,6 +14,8 @@ struct NoteDetails: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var noteManager: Manager<Note>
     
+    @State private var showDeleteDialog: Bool = false
+    
     var body: some View {
         Form {
             row(text: "Name:", systemImage: "person.fill", value: "\(note.name)")
@@ -34,12 +36,17 @@ struct NoteDetails: View {
     private func toolbarContent() -> some ToolbarContent {
         ToolbarItem {
             Button("Delete") {
-                noteManager.remove(note)
-                dismiss()
+                showDeleteDialog.toggle()
             }
             .foregroundColor(.red)
             .fontWeight(.bold)
             .padding(.trailing, 4)
+            .confirmationDialog("Are you sure you want to delete tish note?", isPresented: $showDeleteDialog) {
+                Button("Delete note", role: .destructive) {
+                    noteManager.remove(note)
+                    dismiss()
+                }
+            }
         }
     }
     
@@ -57,6 +64,8 @@ struct NoteDetails: View {
 
 struct NoteDetails_Previews: PreviewProvider {
     static var previews: some View {
-        NoteDetails(note: Note.testSet().first!)
+        NoteDetails(
+            note: Note(startTime: Date.now, name: "Anna", phone: "380934424242", category: Category(name: "general", duration: 3600))
+        )
     }
 }

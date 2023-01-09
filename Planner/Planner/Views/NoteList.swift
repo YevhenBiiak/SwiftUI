@@ -90,11 +90,10 @@ struct NoteRow: View {
                     }
             }
             .padding()
-            .foregroundColor(.black)
             .frame(width: geometry.size.width, height: geometry.size.height)
             .background {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color(red: 0.95, green: 0.95, blue: 0.95))
+                    .fill(Color(.tertiarySystemGroupedBackground))
             }
             .transition(.slide)
         }
@@ -121,7 +120,7 @@ struct AddNoteRow: View {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                     .background {
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(Color(red: 0.95, green: 0.95, blue: 0.95))
+                            .fill(Color(.tertiarySystemGroupedBackground))
                     }
             }
         }

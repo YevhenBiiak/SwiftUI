@@ -13,6 +13,9 @@ struct Categories: View {
     
     @State private var name: String = ""
     @State private var duration: Double = 2
+    @State private var showCreator: Bool = false
+    
+    private let durations = Array(stride(from: 0, through: 5, by: 0.5))
     
     var body: some View {
         VStack {
@@ -33,39 +36,64 @@ struct Categories: View {
                     }
                     .deleteDisabled(categoryManager.data.count == 1)
                 }
-                HStack {
-                    Text(name.isEmpty ? "New Category" : name)
-                    Spacer()
-                    Text("\(String(format: "%.1f", duration)) hours")
-                }
-                .opacity(0.2)
-            }
-            VStack {
-                TextField("New Category", text: $name)
-                    .foregroundColor(.secondary)
-                    .frame(height: 50)
-                    .padding(.horizontal)
-                    .background {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(.tertiary.opacity(0.4))
+                if showCreator {
+                    HStack {
+                        Text(name.isEmpty ? "New Category" : name)
+                        Spacer()
+                        Text("\(String(format: "%.1f", duration)) hours")
                     }
-                Slider(value: $duration, in: 0...5, step: 0.5)
-                    .frame(height: 50)
-                    .padding(.horizontal)
-                    .background {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(.tertiary.opacity(0.4))
+                    .opacity(0.2)
+                } else {
+                    HStack {
+                        Spacer()
+                        Button(showCreator ? "Create" : "+ Add Category") {
+                            withAnimation {
+                                showCreator.toggle()
+                            }
+                        }
+                        .fontWeight(showCreator ? .bold : .regular)
+                        Spacer()
                     }
-                Button("Create") {
-                    categoryManager.add(Category(name: name, duration: duration * 3600))
-                    name = ""
                 }
-                .fontWeight(.bold)
-                .frame(height: 50)
-                .padding(.horizontal)
-                .disabled(name.isEmpty)
             }
-            .padding(EdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16))
+            if showCreator {
+                VStack {
+                    HStack {
+                        Button("Cancel") {
+                            name = ""
+                            withAnimation {
+                                showCreator.toggle()
+                            }                        }
+                        Spacer()
+                        Button("Create") {
+                            categoryManager.add(Category(name: name, duration: duration * 3600))
+                            name = ""
+                            withAnimation {
+                                showCreator.toggle()
+                            }
+                        }
+                        .disabled(name.isEmpty)
+                    }
+                    .fontWeight(.bold)
+                    .padding(.bottom, 8)
+                    TextField("Type the name", text: $name)
+                        .frame(height: 50)
+                        .padding(.horizontal)
+                        .background {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(.tertiary.opacity(0.4))
+                        }
+                    Picker("", selection: $duration) {
+                        ForEach(durations, id: \.self) { duration in
+                            Text("\(String(format: "%.1f", duration)) hours")
+                                .tag(duration)
+                        }
+                    }
+                    .pickerStyle(.wheel)
+                }
+                .padding(EdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 16))
+                .transition(.move(edge: .bottom))
+            }
         }
         .navigationTitle(title)
     }
@@ -78,5 +106,6 @@ struct Categories: View {
 struct Categories_Previews: PreviewProvider {
     static var previews: some View {
         Categories()
+            .environmentObject(Manager(storage: Storage(of: Category.self)))
     }
 }
