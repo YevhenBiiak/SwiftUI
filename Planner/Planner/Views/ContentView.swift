@@ -36,12 +36,18 @@ struct ContentView: View {
     
     @ToolbarContentBuilder
     private func toolbarContent() -> some ToolbarContent {
+        if selectedDate != Date.midnight {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button("Today") {
+                    selectedDate = Date.midnight
+                }
+            }
+        }
         ToolbarItem {
             NavigationLink {
                 Categories()
             } label: {
-                Image(systemName: "list.bullet")
-                    .fontWeight(.bold)
+                Image(systemName: "cube.transparent")
             }
         }
     }
@@ -57,13 +63,16 @@ struct DayCell: View {
     var body: some View {
         VStack {
             Spacer()
-            Indicator(count: filteredNotes.count)
-                .frame(height: 12)
-                .opacity(isSelected ? 1 : 0.5)
-        }
-        .background {
-            RoundedRectangle(cornerRadius: 6)
-                .fill(Color(.tertiarySystemGroupedBackground))
+            if isSelected {
+                Indicator(count: filteredNotes.count)
+                    .frame(height: 10)
+                    .opacity(isSelected ? 1 : 0.6)
+            } else {
+                Indicator(count: filteredNotes.count)
+                    .frame(height: 10)
+                    .opacity(isSelected ? 1 : 0.6)
+                    .clipShape(Capsule())
+            }
         }
         .clipShape(RoundedRectangle(cornerRadius: 6))
         .overlay {

@@ -12,10 +12,10 @@ struct Categories: View {
     @EnvironmentObject var categoryManager: Manager<Category>
     
     @State private var name: String = ""
-    @State private var duration: Double = 2
+    @State private var duration: Double = 1.5
     @State private var showCreator: Bool = false
     
-    private let durations = Array(stride(from: 0, through: 5, by: 0.5))
+    private let durations = Array(stride(from: 0.5, through: 5, by: 0.5))
     
     var body: some View {
         VStack {
@@ -25,7 +25,7 @@ struct Categories: View {
                         HStack {
                             Text(category.name)
                             Spacer()
-                            Text("\(String(format: "%.1f", category.duration / 3600)) hours")
+                            Text(category.duration.timeDescription)
                         }
                     }
                     .onDelete { indexSet in
@@ -40,7 +40,7 @@ struct Categories: View {
                     HStack {
                         Text(name.isEmpty ? "New Category" : name)
                         Spacer()
-                        Text("\(String(format: "%.1f", duration)) hours")
+                        Text((duration * 3600).timeDescription)
                     }
                     .opacity(0.2)
                 } else {
@@ -83,9 +83,9 @@ struct Categories: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(.tertiary.opacity(0.4))
                         }
-                    Picker("", selection: $duration) {
+                    Picker("duration", selection: $duration) {
                         ForEach(durations, id: \.self) { duration in
-                            Text("\(String(format: "%.1f", duration)) hours")
+                            Text((duration * 3600).formattedTime)
                                 .tag(duration)
                         }
                     }

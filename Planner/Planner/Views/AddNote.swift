@@ -28,19 +28,21 @@ struct AddNote: View {
             Row(text: "Phone:", systemImage: "iphone") {
                 TextField("Phone", text: $phone)
                     .multilineTextAlignment(.trailing)
+                    .keyboardType(.numberPad)
             }
             Row(text: "Start time:", systemImage: "clock.fill") {
                 Text(date.formatted("H:mm").capitalized)
             }
             Row(text: "Duration:", systemImage: "timer") {
-                Text("\(String(format: "%.1f",category.duration / 3600)) hours")
+                Text(category.duration.timeDescription)
             }
             Row(text: "Category:", systemImage: "tag.fill") {
                 Picker("", selection: $category) {
                     ForEach(categoryManager.data) { category in
-                        Text(category.name)
+                        Text(category.name + " (\(category.duration.timeDescription))")
                             .tag(category)
                     }
+                    .lineLimit(1)
                 }
             }
         }

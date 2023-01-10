@@ -92,3 +92,27 @@ extension Date {
         Calendar.current.date(byAdding: right, value: 1, to: left)!
     }
 }
+
+extension TimeInterval {
+    
+    var formattedTime: String {
+        let h = Int(self / 3600)
+        let m = Int(fmod(self, 3600) / 60)
+        let date = Date.midnight.with(hour: h).with(minute: m)
+        
+        return date.formatted("HH:mm")
+    }
+    
+    var timeDescription: String {
+        let h = Int(self / 3600)
+        let m = Int(fmod(self, 3600) / 60)
+        
+        if h == 0 {
+            return "\(m)m"
+        } else if m == 0 {
+            return "\(h)h"
+        } else {
+            return "\(h)h \(m)m"
+        }
+    }
+}

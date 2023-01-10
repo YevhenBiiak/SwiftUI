@@ -18,11 +18,14 @@ struct NoteDetails: View {
     
     var body: some View {
         Form {
-            row(text: "Name:", systemImage: "person.fill", value: "\(note.name)")
-            row(text: "Phone:", systemImage: "iphone", value: "\(note.phone)")
-            row(text: "Start time:", systemImage: "clock.fill", value: "\(note.startTime.formatted("H:mm"))")
-            row(text: "Duration:", systemImage: "timer", value: "\(note.category.duration / 3600)")
-            row(text: "Category:", systemImage: "tag.fill", value: "\(note.category.name)")
+            Row(text: "Name:", systemImage: "person.fill", value: "\(note.name)")
+            Row(text: "Phone:", systemImage: "iphone", value: "\(note.phone)", valueColor: .accentColor)
+                .onTapGesture {
+                    call()
+                }
+            Row(text: "Start time:", systemImage: "clock.fill", value: "\(note.startTime.formatted("H:mm"))")
+            Row(text: "Duration:", systemImage: "timer", value: note.category.duration.timeDescription)
+            Row(text: "Category:", systemImage: "tag.fill", value: "\(note.category.name)")
         }
         .navigationTitle(title)
         .toolbar(content: toolbarContent)
@@ -51,14 +54,20 @@ struct NoteDetails: View {
     }
     
     @ViewBuilder
-    func row(text: String, systemImage: String, value: String) -> some View {
+    func Row(text: String, systemImage: String, value: String, valueColor: Color = .primary) -> some View {
         HStack {
             Image(systemName: systemImage)
                 .foregroundStyle(Color.accentColor)
             Text(text)
             Spacer()
             Text(value)
+                .foregroundColor(valueColor)
         }
+    }
+    
+    func call() {
+        guard let url = URL(string: "tel://\(note.phone)") else { return }
+        UIApplication.shared.open(url)
     }
 }
 

@@ -17,11 +17,7 @@ struct MonthPicker: View {
         LazyVGrid(columns: columns) {
             ForEach(months, id: \.self) { month in
                 Button {
-                    if selection == month {
-                        selection = Date.midnight
-                    } else {
-                        selection = month
-                    }
+                    selection = month
                 } label: {
                     if selection == month {
                         Text(month.formatted("MMMM").capitalized)

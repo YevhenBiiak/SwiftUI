@@ -74,20 +74,22 @@ struct NoteRow: View {
                         .offset(y: -1)
                         .padding(.horizontal, 4)
                         .overlay {
-                            RoundedRectangle(cornerRadius: 3).stroke(Color.accentColor, lineWidth: 2)
+                            RoundedRectangle(cornerRadius: 3).stroke(Color.accentColor, lineWidth: 1.3)
                         }
                 }
                 Spacer()
                 Text(note.name)
                     .padding(.trailing, 12)
-                Image(systemName: "iphone")
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.white)
-                    .fontWeight(.bold)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color.accentColor.opacity(0.7))
-                    }
+                Button(action: call) {
+                    Image(systemName: "phone.fill")
+                        .font(.title2)
+                        .foregroundColor(.white)
+                }
+                .frame(width: geometry.size.height * 0.63, height: geometry.size.height * 0.63)
+                .background {
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.accentColor)
+                }
             }
             .padding()
             .frame(width: geometry.size.width, height: geometry.size.height)
@@ -101,6 +103,11 @@ struct NoteRow: View {
     
     private var timeText: String {
         "\(note.startTime.formatted("HH:mm")) - \((note.startTime + note.category.duration).formatted("HH:mm"))"
+    }
+    
+    func call() {
+        guard let url = URL(string: "tel://\(note.phone)") else { return }
+        UIApplication.shared.open(url)
     }
 }
 
