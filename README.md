@@ -6,16 +6,17 @@ My implementation of projects from SwiftUI course by SwiftBook
 ## Planner App
 
 <p align=center>
-  <img width=30% src="https://user-images.githubusercontent.com/80542175/211563749-33fedf83-abc5-4592-ba7a-f3f74f460e27.png">
-  <img width=30% src="https://user-images.githubusercontent.com/80542175/211563769-73c22d55-6059-4c9b-b061-add5587d93ff.png">
-  <img width=30% src="https://user-images.githubusercontent.com/80542175/211563783-5b546ef6-6fb5-41a7-961d-d6bd8d83dbcb.png">
+  <img width=30% src="https://user-images.githubusercontent.com/80542175/226983975-4ad550f6-07be-4102-ab5c-eb70fc2333d2.png">
+  <img width=30% src="https://user-images.githubusercontent.com/80542175/226988482-e94ce5b9-0de3-47c3-8b90-b7bcfa779d48.png">
+  <img width=30% src="https://user-images.githubusercontent.com/80542175/226988495-9539111d-2674-47b8-858f-205bf115a7d4.png">
+
 </p>
 
 <details><summary>More GIFs and screenshots</summary>
   <p align=center>
     <img width=30% src="https://user-images.githubusercontent.com/80542175/211562097-0928d841-0037-4625-b103-bb6a53870bd4.gif">
-    <img width=30% src="https://user-images.githubusercontent.com/80542175/211563781-f9e4638c-40e1-496a-9d79-3ddcc3dd53ba.png">
-    <img width=30% src="https://user-images.githubusercontent.com/80542175/211563793-ccb83013-0dd7-4353-af0e-22feb819b45b.png">
+    <img width=30% src="https://user-images.githubusercontent.com/80542175/226988619-836649ab-99ec-47fb-bca0-2bbb893f90fe.png">
+    <img width=30% src="https://user-images.githubusercontent.com/80542175/226988630-e472aefd-13ae-4b83-8126-23e40e2d181d.png">
   </p>
 </details>
 
@@ -68,15 +69,13 @@ In addition, the app includes a variety of features designed to enhance the user
     
   </details>
   
-- Foundation: encoding/decoding JSON, Calendar, Date
+- Foundation: encoding/decoding `JSON`, `Calendar`, `Date`
   
 ## Used Technology Stack
 
-The following technologies were used to develop the app:
-
-- Swift
-- Xcode
-- JSON
+- `Swift`
+- `Xcode`
+- `JSON`
 
 <details><summary><h2>Other Apps</h2></summary>
   <p align=center>
